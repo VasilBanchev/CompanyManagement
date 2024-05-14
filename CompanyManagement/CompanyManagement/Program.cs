@@ -1,5 +1,6 @@
 using CompanyManagement.Client.Pages;
 using CompanyManagement.Components;
+using Shared.TeamMembers.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
