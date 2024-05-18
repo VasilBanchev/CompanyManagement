@@ -1,8 +1,14 @@
-using CompanyManagement.Components;
+ using CompanyManagement;
+ using CompanyManagement.Components;
+ using CompanyManagement.ServiceLayer.CQRS.Commands.CreateProjectCommand;
+ using Shared.Extensions;
 
-var builder = WebApplication.CreateBuilder(args);
+ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+ builder.AddExtensions(); 
+ builder.Services.AddApplicationExtensions(new[] { typeof(CreateProjectCommand).Assembly });
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
@@ -24,7 +30,8 @@ else
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
-app.UseAntiforgery();
+app.UseAntiforgery(); 
+ app.EnsureDatabaseCreated();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()

@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CompanyManagement.ServiceLayer\CompanyManagement.ServiceLayer.csproj" />
     <ProjectReference Include="..\..\CompanyManagement.Shared\CompanyManagement.Shared.csproj" />
   </ItemGroup>
 

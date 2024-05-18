@@ -1,6 +1,22 @@
 ﻿@page "/"
+@using MediatR
+@using CompanyManagement.ServiceLayer.CQRS.Commands.CreateProjectCommand
+
 <h3>Home</h3>
+<button @onclick="CreateProjectAsync">Create User</button>
+<h1>@Text</h1>
 
 @code {
-    
+    [Inject]
+    public IMediator _mediator { get; set; }
+
+    public string Text { get; set; }
+
+    private void CreateProjectAsync()
+    {
+        Console.WriteLine("Here");
+        var result = _mediator.Send(new CreateProjectCommand { Name = "CompanyManager", DueDate = null }).Result;
+        Console.WriteLine("Here");
+        Text = result.Message;
+    }
 }
