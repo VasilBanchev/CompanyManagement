@@ -4,11 +4,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>Shared</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Database\Diagrams\" />
-    <Folder Include="TeamMembers\DTOs\" />
   </ItemGroup>
 
 </Project>
