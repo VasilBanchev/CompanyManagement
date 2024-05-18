@@ -5,6 +5,7 @@
 
 # Rider
 **/.idea/*
+**/appsettings.json
 
 # User-specific files
 *.rsuser
