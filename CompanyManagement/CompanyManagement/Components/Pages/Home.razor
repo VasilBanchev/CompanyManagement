@@ -1,23 +1,13 @@
 ﻿@page "/"
 @using static Microsoft.AspNetCore.Components.Web.RenderMode
-@using MediatR
-@using CompanyManagement.ServiceLayer.CQRS.Commands.CreateProjectCommand
-@using MediatR
 @rendermode InteractiveServer
 
-<h3>Home</h3>
-<button @onclick="async () => await CreateProjectAsync()">Create User</button>
-<h1>@Text</h1>
+<EditForm title="Create Project" Model="projectCreate">
+    <input @bind-value=projectCreate.Name />
+    <input type="date" @bind-value=@projectCreate.DueDate />
+    <button @onclick="async () => await CreateProjectAsync()">Create Project</button>
+    <h1>@TextProject</h1>
+</EditForm>
 
-@code {
-    [Inject]
-    public IMediator _mediator { get; set; }
-
-    string Text;
-
-    private async Task CreateProjectAsync()
-    {
-        var result = await _mediator.Send(new CreateProjectCommand { Name = "CompanyManager", DueDate = null });
-        Text = result.Message;
-    }
-}
+<button @onclick="async () => await CreateProjectTeamAsync()">Create Team</button>
+<h1>@TextProjectTeam</h1>

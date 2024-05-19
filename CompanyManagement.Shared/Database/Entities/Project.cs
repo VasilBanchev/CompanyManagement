@@ -9,6 +9,6 @@ public class Project
     [Required]
     [MaxLength(30)]
     public string Name { get; set; }
-    public DateTime? DueDate { get; set; }
+    public DateOnly? DueDate { get; set; }
     public List<ProjectTeam> ProjectTeams { get; set; }
 }

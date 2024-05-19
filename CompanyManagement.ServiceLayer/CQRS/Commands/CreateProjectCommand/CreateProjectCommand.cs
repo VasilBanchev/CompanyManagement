@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Shared.Constants;
 using Shared.Database;
 using Shared.Database.Entities;
 using Shared.Types;
@@ -9,7 +10,7 @@ namespace CompanyManagement.ServiceLayer.CQRS.Commands.CreateProjectCommand;
 public class CreateProjectCommand : IRequest<ModelWrapper>
 {
     public string Name { get; set; }
-    public DateTime? DueDate { get; set; }
+    public DateOnly? DueDate { get; set; }
 }
 
 public class CreateProjectCommandHandler(CompanyDbContext context) : IRequestHandler<CreateProjectCommand, ModelWrapper>
@@ -28,8 +29,8 @@ public class CreateProjectCommandValidator : AbstractValidator<CreateProjectComm
     public CreateProjectCommandValidator()
     {
         RuleFor(p => p.Name)
-            .Must(name => name.Length <= 30)
-            .WithMessage("Project name too long, choose name with at most 30 characters!")
-            .WithErrorCode("422");
+            .Must(name => name.Length <= IntConsts.NAME_MAX_LENGHT)
+            .WithMessage($"Project name too long, choose name with at most {IntConsts.NAME_MAX_LENGHT} characters!")
+            .WithErrorCode(ErrorCodes.UnprocessableContent.ToString());
     }
 }
